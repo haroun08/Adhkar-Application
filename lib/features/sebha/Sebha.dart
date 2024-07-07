@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class Sebha extends StatefulWidget {
@@ -8,11 +9,35 @@ class Sebha extends StatefulWidget {
 }
 
 class _SebhaState extends State<Sebha> {
+  late AudioPlayer _audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  Future<void> _playAudio() async {
+    final String audioPath = 'audio/1.mp3';
+    try {
+      await _audioPlayer.setSource(AssetSource(audioPath));
+      await _audioPlayer.resume();
+    } catch (e) {
+      print('Error loading audio file: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Sebha',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -23,11 +48,21 @@ class _SebhaState extends State<Sebha> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Text(
-            'المسبحة',
-            style: TextStyle(
-              fontSize: 20,
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'المسبحة',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _playAudio,
+                child: const Text('Play Audio'),
+              ),
+            ],
           ),
         ),
       ),

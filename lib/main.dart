@@ -52,10 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   static const List<Color> _appBarColors = <Color>[
-    Colors.brown,
-    Colors.brown,
-    Colors.brown,
-    Colors.brown,
+    Colors.green,
+    Colors.green,
+    Colors.green,
+    Colors.green,
   ];
 
   void _onItemTapped(int index) {
