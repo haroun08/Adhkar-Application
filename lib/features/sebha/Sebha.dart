@@ -37,6 +37,7 @@ class _SebhaState extends State<Sebha> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           'Sebha',
           style: TextStyle(
